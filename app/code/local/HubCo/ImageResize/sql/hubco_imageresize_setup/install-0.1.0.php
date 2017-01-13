@@ -31,7 +31,7 @@ $table->addColumn ( 'imgPath', Varien_Db_Ddl_Table::TYPE_VARCHAR, 128, array (
     'nullable' => false,
     'primary' => true
 ) );
-$table->addColumn ( 'product_id', Varien_Db_Ddl_Table::TYPE_INTEGER, 15, array (
+$table->addColumn ( 'productID', Varien_Db_Ddl_Table::TYPE_INTEGER, 15, array (
     'nullable' => true
 ) );
 $table->addColumn ( 'Owidth', Varien_Db_Ddl_Table::TYPE_INTEGER, 10, array (

@@ -24,6 +24,7 @@ class HubCo_ImageResize_Model_Image
   public function rescan() {
     $products = Mage::getStoreConfig('imageresize_options/img/scan_size');
     $start = Mage::getStoreConfig('imageresize_options/img/last_scanned');
+
     $productsCollection = Mage::getModel('catalog/product')->getCollection();
     $productsCollection->getSelect()->limit($products, $start);
     //echo $productsCollection->getSelect()->__toString();
@@ -42,6 +43,9 @@ class HubCo_ImageResize_Model_Image
     else {
       Mage::getModel('core/config')->saveConfig('imageresize_options/img/last_scanned', $products+$start);
     }
+
+    # refresh magento configuration cache
+    Mage::app()->getCacheInstance()->cleanType('config');
   }
 
   public function resize() {
@@ -54,13 +58,15 @@ class HubCo_ImageResize_Model_Image
     $collection->getSelect()->limit($qty);
     //echo $collection->getSelect();  exit;
     foreach ($collection as $image) {
-      $imagePath = $baseDir.'/catalog/product/'.$image['imgPath'];
-      $imagick = new \Imagick(realpath($imagePath));
-      $imagick->setImageCompressionQuality(80);
-      $imagick->stripImage();
-      $imagick->scaleImage($width, 0);
-      $imagick->writeImage($imagePath);
-      $imagick->destroy();
+      $imagePath = $baseDir.'/catalog/product'.$image['imgPath'];
+      if (realpath($imagePath) !== false) {
+        $imagick = new \Imagick(realpath($imagePath));
+        $imagick->setImageCompressionQuality(80);
+        $imagick->stripImage();
+        $imagick->scaleImage($width, 0);
+        $imagick->writeImage($imagePath);
+        $imagick->destroy();
+      }
       $image->setCleaned(1);
       $image->save();
     }

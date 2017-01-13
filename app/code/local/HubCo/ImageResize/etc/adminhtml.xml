@@ -23,22 +23,6 @@
 							<action>hubco_imageresize_admin/image</action>
 
 						</images>
-						<scan translate="title" module="hubco_brand">
-							<title>Scan Images</title>
-							<sort_order>2</sort_order>
-
-							<!-- When the menu is clicked, take the user here. -->
-							<action>hubco_imageresize_admin/scan</action>
-
-						</scan>
-						<resize translate="title" module="hubco_brand">
-							<title>Resize</title>
-							<sort_order>3</sort_order>
-
-							<!-- When the menu is clicked, take the user here. -->
-							<action>hubco_imageresize_admin/resize</action>
-
-						</resize>
 					</children>
 				</hubco_imageresize>
 			</children>

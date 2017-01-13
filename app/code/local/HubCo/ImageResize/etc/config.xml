@@ -144,6 +144,22 @@
   </adminhtml>
   <crontab>
     <jobs>
+      <hubco_images_scan>
+        <schedule>
+          <cron_expr>*/20 * * * *</cron_expr>
+        </schedule>
+        <run>
+          <model>hubco_imageresize/image::rescan</model>
+        </run>
+      </hubco_images_scan>
+      <hubco_images_size>
+        <schedule>
+          <cron_expr>*/15 * * * *</cron_expr>
+        </schedule>
+        <run>
+          <model>hubco_imageresize/image::resize</model>
+        </run>
+      </hubco_images_size>
     </jobs>
   </crontab>
 </config>
