@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <HubCo_ImageResize>
+      <active>true</active>
+      <codePool>local</codePool>
+      <version>0.1.0</version>
+    </HubCo_ImageResize>
+  </modules>
+</config>

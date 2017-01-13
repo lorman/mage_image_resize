@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <HubCo_ImageResize>
+      <!-- This is the version number that our module is currently at. In order
+        for setup scripts to run, their version number must be less than or equal
+        to this value. As we add upgrade scripts, we increment this value. The next
+        time your Magento instance is accessed, Magento will compare values in the
+        database table 'core_resource' against this value. If the database is lower,
+        it will attempt to run any setup scripts for the module and then update the
+        database table to match this value. -->
+      <version>0.1.0</version>
+    </HubCo_ImageResize>
+  </modules>
+  <global>
+
+    <!-- add an adminhtml block definition -->
+    <blocks>
+      <hubco_imageresize_adminhtml>
+        <class>HubCo_ImageResize_Block_Adminhtml</class>
+      </hubco_imageresize_adminhtml>
+      <hubco_imageresize>
+        <class>HubCo_ImageResize_Block</class>
+      </hubco_imageresize>
+    </blocks>
+
+    <!-- Add a helper definition for use in adminhtml.xml menu translation. -->
+    <helpers>
+      <hubco_imageresize>
+        <class>HubCo_ImageResize_Helper</class>
+      </hubco_imageresize>
+    </helpers>
+
+    <models>
+
+      <!-- This is the model alias referred to in install-0.0.1.php. -->
+      <hubco_imageresize>
+        <!-- This tells Magento where to find models for this module. -->
+        <class>HubCo_ImageResize_Model</class>
+
+        <!-- This tells Magento where to find resource materials for this module. -->
+        <resourceModel>hubco_imageresize_resource</resourceModel>
+
+      </hubco_imageresize>
+
+      <!-- This alias must match the <resourceModel/> value above. -->
+      <hubco_imageresize_resource>
+        <!-- This tells Magento where to find resource models for this module. -->
+        <class>HubCo_ImageResize_Model_Resource</class>
+
+        <entities>
+
+          <!-- This is the table alias referred to in install-0.0.1.php. -->
+          <image>
+            <!-- This is the name of the database table itself. -->
+            <table>hubco_imageresize_images</table>
+          </image>
+        </entities>
+
+      </hubco_imageresize_resource>
+
+    </models>
+
+    <resources>
+
+
+      <!-- This must match our folder name in the module sql folder. -->
+      <hubco_imageresize_setup>
+
+        <setup>
+
+          <!-- This defines which module the setup scripts in this location belong
+            to. -->
+          <module>HubCo_ImageResize</module>
+
+          <!-- In each setup script, this value determines the class of $this. -->
+          <class>Mage_Core_Model_Resource_Setup</class>
+
+        </setup>
+
+        <!-- This is relevant only if you have multiple database connections. -->
+        <connection>
+          <use>core_setup</use>
+        </connection>
+
+      </hubco_imageresize_setup>
+
+    </resources>
+
+  </global>
+
+  <!-- Add a router for access to our admin panel controller. -->
+  <admin>
+    <routers>
+
+      <!-- This is the alias for this router. -->
+      <hubco_imageresize_admin>
+
+        <!-- This basically informs Magento to use the admin scope for requests
+          to this router. -->
+        <use>admin</use>
+
+        <args>
+          <!-- This tells Magento where to find adminhtml controllers for this
+            module. -->
+          <module>HubCo_ImageResize_Adminhtml</module>
+
+          <!-- This is the term used in the actual URL. -->
+          <frontName>imageresize-admin</frontName>
+        </args>
+
+      </hubco_imageresize_admin>
+
+    </routers>
+  </admin>
+
+  <adminhtml>
+    <layout>
+      <updates>
+        <hubco_imageresize>
+          <file>hubco_imageresize.xml</file>
+        </hubco_imageresize>
+      </updates>
+    </layout>
+    <acl>
+      <resources>
+        <admin>
+          <children>
+            <system>
+              <children>
+                <config>
+                  <children>
+                    <imageresize_options>
+                      <title>ImageResize Config Options</title>
+                    </imageresize_options>
+                  </children>
+                </config>
+              </children>
+            </system>
+          </children>
+        </admin>
+      </resources>
+    </acl>
+  </adminhtml>
+  <crontab>
+    <jobs>
+    </jobs>
+  </crontab>
+</config>

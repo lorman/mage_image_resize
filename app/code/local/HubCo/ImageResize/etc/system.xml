@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--http://alanstorm.com/custom_magento_system_configuration-->
+<config>
+	<tabs>
+		<hubcoimport translate="label" module="hubco_imageresize">
+			<label>HubCo Import</label>
+			<sort_order>99999</sort_order>
+		</hubcoimport>
+	</tabs>
+	<sections>
+		<imageresize_options translate="label" module="hubco_imageresize">
+			<label>Image Resizer</label>
+			<tab>hubcoimport</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>1000</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<img translate="label">
+					<label>Image Resizer</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<scan_size>
+							<label>Products to Scan</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</scan_size>
+            <last_scanned>
+              <label>Start scanning with this product ID</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>2</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </last_scanned>
+            <resize_qty>
+              <label>Resize qty</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>3</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </resize_qty>
+            <resize_width>
+              <label>Resize width</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>4</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </resize_width>
+					</fields>
+				</img>
+			</groups>
+		</imageresize_options>
+	</sections>
+</config>

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config>
+	<!-- We are defining a new menu item for the admin panel. -->
+	<menu>
+		<suppliers>
+			<children>
+				<!-- First, create a top-level menu item, which will appear alongside
+					CMS -->
+				<hubco_imageresize translate="title" module="hubco_brand">
+					<title>ImageResize</title>
+					<sort_order>105</sort_order>
+					<depends>
+						<module>HubCo_ImageResize</module>
+					</depends>
+
+					<!-- Under this top-level menu, create a child menu item. -->
+					<children>
+						<images translate="title" module="hubco_brand">
+							<title>Images</title>
+							<sort_order>1</sort_order>
+
+							<!-- When the menu is clicked, take the user here. -->
+							<action>hubco_imageresize_admin/image</action>
+
+						</images>
+						<scan translate="title" module="hubco_brand">
+							<title>Scan Images</title>
+							<sort_order>2</sort_order>
+
+							<!-- When the menu is clicked, take the user here. -->
+							<action>hubco_imageresize_admin/scan</action>
+
+						</scan>
+						<resize translate="title" module="hubco_brand">
+							<title>Resize</title>
+							<sort_order>3</sort_order>
+
+							<!-- When the menu is clicked, take the user here. -->
+							<action>hubco_imageresize_admin/resize</action>
+
+						</resize>
+					</children>
+				</hubco_imageresize>
+			</children>
+		</suppliers>
+	</menu>
+
+	<!-- Define ACL for access to these menu items. -->
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<hubco_imageresize translate="title" module="hubco_imageresize">
+						<title>ImageResize</title>
+						<sort_order>85</sort_order>
+						<children>
+							<imageresize translate="title" module="hubco_imageresize">
+								<title>Manage ImageResize</title>
+							</imageresize>
+						</children>
+					</hubco_imageresize>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>
