@@ -24,6 +24,8 @@ class HubCo_ImageResize_Model_Image
   public function rescan() {
     $products = Mage::getStoreConfig('imageresize_options/img/scan_size');
     $start = Mage::getStoreConfig('imageresize_options/img/last_scanned');
+    $sessionStart = Mage::getSingleton('core/session')->getHubImageStart();
+    $start = max($start, $sessionStart);
 
     $productsCollection = Mage::getModel('catalog/product')->getCollection();
     $productsCollection->getSelect()->limit($products, $start);
@@ -39,9 +41,11 @@ class HubCo_ImageResize_Model_Image
     }
     if ($i < $products) {
       Mage::getModel('core/config')->saveConfig('imageresize_options/img/last_scanned', 0);
+      Mage::getSingleton('core/session')->setHubImageStart(0);
     }
     else {
       Mage::getModel('core/config')->saveConfig('imageresize_options/img/last_scanned', $products+$start);
+      Mage::getSingleton('core/session')->setHubImageStart($products+$start);
     }
 
     # refresh magento configuration cache
