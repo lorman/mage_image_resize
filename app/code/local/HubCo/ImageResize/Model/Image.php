@@ -63,7 +63,7 @@ class HubCo_ImageResize_Model_Image
     //echo $collection->getSelect();  exit;
     foreach ($collection as $image) {
       $imagePath = $baseDir.'/catalog/product'.$image['imgPath'];
-      if (realpath($imagePath) !== false) {
+      if (realpath($imagePath) !== false && file_exists(realpath($imagePath)) && filesize(realpath($imagePath)) > 0) {
         $imagick = new \Imagick(realpath($imagePath));
         $imagick->setImageCompressionQuality(80);
         $imagick->stripImage();

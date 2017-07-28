@@ -17,6 +17,12 @@ class HubCo_ImageResize_Block_Adminhtml_Image
         'onclick'   => "location.href='".Mage::helper('adminhtml')->getUrl("imageresize-admin/image/resize")."'",
         'class'     => 'button'
         ), 0, 200, 'header');
+
+        $this->addButton('bad-links', array(
+        'label'     => Mage::helper('adminhtml')->__('Remove Bad Links'),
+        'onclick'   => "location.href='".Mage::helper('adminhtml')->getUrl("imageresize-admin/image/badlinks")."'",
+        'class'     => 'button'
+        ), 0, 300, 'header');
         /**
          * The $_blockGroup property tells Magento which alias to use to
          * locate the blocks to be displayed in this grid container.

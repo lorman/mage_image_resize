@@ -52,6 +52,19 @@ class HubCo_Imageresize_Adminhtml_ImageController
             ->renderLayout();
     }
 
+    public function badlinksAction()
+    {
+      $products = Mage::getModel('catalog/product')->getCollection();
+      $api = Mage::getModel('catalog/product_attribute_media_api');
+      foreach($products as $product){
+        $images = $api->items($product->getId());
+        foreach($images as $img){
+         if(!file_exists(Mage::getBaseDir('media').'/catalog/product'.$img['file']))
+           $api->remove($product->getId(),$img['file']);
+        }
+      }
+    }
+
     /**
      * Thanks to Ben for pointing out this method was missing. Without
      * this method the ACL rules configured in adminhtml.xml are ignored.
